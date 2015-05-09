@@ -1,0 +1,52 @@
+{
+  "name": "default menu",
+  "desc": "This is a test menu",
+  "root": {
+    "name": "origin",
+    "desc": "No description",
+    "children": [
+      {
+        "name": "system",
+        "desc": "System menu",
+        "children": [
+          {
+            "name": "shutdown",
+            "desc": "This action will power off the computer",
+            "command": "shutdown now",
+            "command_type": "execute"
+          },
+          {
+            "name": "reboot",
+            "desc": "This action will reboot the computer",
+            "command": "reboot",
+            "command_type": "execute"
+          }
+        ]
+      },
+      {
+        "name": "time",
+        "desc": "Tells you the time",
+        "command": "date '+%H hours %M minutes'",
+        "command_type": "read-output"
+      },
+      {
+        "name": "applications",
+        "desc": "A list of useful applications",
+        "children": [
+          {
+            "name": "steam",
+            "desc": "Let's launch steam and play games !",
+            "command": "steam",
+            "command_type": "execute"
+          },
+          {
+            "name": "firefox",
+            "desc": "Browse internet using Firefox",
+            "command": "firefox",
+            "command_type": "execute"
+          }
+        ]
+      }
+    ]
+  }
+}

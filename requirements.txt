@@ -1,0 +1,4 @@
+pySerial
+enum34
+pyAudio
+pydub

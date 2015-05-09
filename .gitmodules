@@ -1,0 +1,3 @@
+[submodule "myo"]
+	path = myo
+	url = https://github.com/monsieurh/myo-raw.git
