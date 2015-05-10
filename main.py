@@ -5,7 +5,10 @@ from myo.myo import MyoRaw
 from myo.myo_raw import Pose
 from sounds.generator import AudioFileManager
 from menu import Branch, Leaf
-from pydub.playback import play
+from pydub.utils import get_player_name
+from tempfile import NamedTemporaryFile
+import os
+import subprocess
 import menu
 
 
@@ -51,6 +54,13 @@ nav = menu.MenuNavigator(current_menu)
 im = InputManager()
 am = AudioFileManager("en", "/tmp/")
 
+PLAYER = get_player_name()
+
+
+def custom_play(filename):
+    FNULL = open(os.devnull, 'w')
+    subprocess.Popen([PLAYER, "-nodisp", "-autoexit", filename], stdout=FNULL, stderr=subprocess.STDOUT)
+
 
 def vibrate_one(pose):
     m.vibrate(1)
@@ -78,20 +88,18 @@ def print_pos(pose):
 
 
 def say_selected(pose):
-    sound = am.get(nav.get_selected().name)
-    play(sound)
+    sound = am.get_filename(nav.get_selected().name)
+    custom_play(sound)
 
 
 def say_current(pose):
-    sound = am.get(nav.get_selected().parent.name)
-    play(sound)
-    sound = am.get(nav.get_selected().name)
-    play(sound)
+    sound = am.get_filename(nav.get_selected().name)
+    custom_play(sound)
 
 
 def say_selected_desc(pose):
-    sound = am.get(nav.get_selected().desc)
-    play(sound)
+    sound = am.get_filename(nav.get_selected().desc)
+    custom_play(sound)
 
 
 def down_wrapper(pose):
@@ -100,14 +108,14 @@ def down_wrapper(pose):
         say_current(pose)
     else:
         if nav.get_selected().command_type == "execute":
-            s = am.get("Executing command")
-            play(s)
+            s = am.get_filename("Executing command")
+            custom_play(s)
             nav.down()
         else:  # Read-output
             output = nav.down()
             if output:
-                sound = am.get(output)
-                play(sound)
+                sound = am.get_filename(output)
+                custom_play(sound)
 
 
 to_build = current_menu.get_strings()

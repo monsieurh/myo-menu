@@ -120,7 +120,7 @@ class Leaf(MenuItem):
             return result
 
         elif self.command_type == "execute":
-            sub = subprocess.Popen(shlex.split(self.command))
+            subprocess.Popen(shlex.split(self.command), stdin=None, stdout=None, stderr=None, close_fds=True)
         else:
             pass
 

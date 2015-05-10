@@ -123,6 +123,17 @@ class AudioFileManager(object):
 
         return AudioSegment.from_file(file_path, format=self._file_ext)
 
+    def get_filename(self, text):
+        """
+        See `get`. Same function but returns filename instead of AudioSegment
+        :param text:
+        :return:
+        """
+        file_path = self._make_filename(text)
+        if not os.path.exists(file_path):
+            GoogleTTSGenerator.generate_sound(file_path, self._locale, text)
+        return file_path
+
     def build_audio_files(self, text_list):
         """
         Builds audio files even if they are already present

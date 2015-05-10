@@ -24,10 +24,23 @@
         ]
       },
       {
-        "name": "time",
-        "desc": "Tells you the time",
-        "command": "date '+%H hours %M minutes'",
-        "command_type": "read-output"
+        "name": "utilities",
+        "desc": "A collection of small programs",
+        "children": [
+          {
+            "name": "time",
+            "desc": "Tells you the time",
+            "command": "date '+%H hours %M minutes'",
+            "command_type": "read-output"
+          },
+          {
+            "name": "current user",
+            "desc": "The name of the current user",
+            "command": "whoami",
+            "command_type": "read-output"
+          }
+
+        ]
       },
       {
         "name": "applications",
@@ -43,6 +56,12 @@
             "name": "firefox",
             "desc": "Browse internet using Firefox",
             "command": "firefox",
+            "command_type": "execute"
+          },
+          {
+            "name": "Spotify",
+            "desc": "Liste to music",
+            "command": "spotify",
             "command_type": "execute"
           }
         ]

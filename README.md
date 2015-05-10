@@ -48,7 +48,7 @@ Perform the synchronisation gesture, and navigate the menu.
 
 # Future
 ## Known bugs
-The Myo seems to loose synchronisation when the output of an action is read back to the user
+The Myo seems to loose synchronisation when the output of an action is read back to the user [FIXED]
 
 ## Features
 - Controls configuration through JSON file
